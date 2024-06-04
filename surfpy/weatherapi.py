@@ -73,6 +73,9 @@ class WeatherApi():
     def fetch_hourly_forecast(location: Location) -> List[BuoyData]:
         meta = WeatherApi.points(location)
         raw_hourly = WeatherApi.hourly_forecast(meta['gridId'], meta['gridX'], meta['gridY'])
+        # if raw_hourly is None:
+        #     print("Failed to fetch hourly forecast data.")
+        # #return raw_hourly
         return WeatherApi.parse_weather_forecast(raw_hourly)
 
     @staticmethod
