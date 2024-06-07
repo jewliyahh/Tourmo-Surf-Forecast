@@ -11,13 +11,17 @@ if __name__=='__main__':
     ri_wave_location.slope = 0.02
     atlantic_wave_model = surfpy.wavemodel.atlantic_gfs_wave_model()
     block_island_buoy = BuoyStation('44097', ri_wave_location)
+    mission_bay_west_buoy = BuoyStation('46258', ri_wave_location)
 
     print('Fetching GFS Wave Data')
     data = block_island_buoy.fetch_wave_forecast_bulletin(atlantic_wave_model)
+    print('buoy data:', data)
 
     print('Fetching local weather data')
     ri_wind_location = surfpy.Location(41.41, -71.45, altitude=0.0, name='Narragansett Pier')
     weather_data = surfpy.WeatherApi.fetch_hourly_forecast(ri_wind_location)
+
+    print('weather data:', weather_data)
     surfpy.merge_wave_weather_data(data, weather_data)
 
     print('Solving Breaking Wave Heights')

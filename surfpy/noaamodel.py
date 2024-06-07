@@ -2,7 +2,8 @@ import datetime
 import pytz
 from . import units
 from .buoydata import BuoyData
-from . import tools
+#from . import tools
+import surfpy.tools as tools
 
 from io import StringIO, BytesIO
 import struct
