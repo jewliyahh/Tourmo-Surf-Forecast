@@ -248,16 +248,32 @@ def download_data(url):
         return False
     return response.content
 
-
+"""
 def retry_session(retries=1):
     session = requests.Session()
     retries = Retry(total=retries,
                 backoff_factor=0.1,
                 status_forcelist=[500, 502, 503, 504],
                 method_whitelist=frozenset(['GET', 'POST']))
+                #allowed_methods=frozenset(['GET', 'POST']))
 
     session.mount('https://', HTTPAdapter(max_retries=retries))
     session.mount('http://', HTTPAdapter(max_retries=retries))
+    return session
+"""
+# Create a retry session with enhanced error handling
+def retry_session(retries=1):
+    session = requests.Session()
+    retries = Retry(
+        total=retries,
+        backoff_factor=0.1,
+        status_forcelist=[500, 502, 503, 504],
+        allowed_methods=frozenset(['GET', 'POST'])  # Use 'allowed_methods' instead of 'method_whitelist'
+    )
+    adapter = HTTPAdapter(max_retries=retries)
+    session.mount('http://', adapter)
+    session.mount('https://', adapter)
+    print('got here!!!')
     return session
 
 
