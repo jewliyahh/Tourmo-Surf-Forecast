@@ -273,7 +273,7 @@ def retry_session(retries=1):
     adapter = HTTPAdapter(max_retries=retries)
     session.mount('http://', adapter)
     session.mount('https://', adapter)
-    print('got here!!!')
+    # print('got here!!!')
     return session
 
 

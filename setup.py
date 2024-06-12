@@ -1,12 +1,9 @@
 from setuptools import setup
 
 setup(name='surfpy',
-      version='0.98.0',
+      version='0.98.1',  # Incremented version to reflect updates
       description='Wave and weather tools written in pure python',
-      url='https://github.com/mpiannucci/surfpy',
-      author='Matthew Iannucci',
-      author_email='rhodysurf13@gmail.com',
-      license='MIT',
+      url='https://github.com/jewliyahh/Tourmo-Surf-Forecast',  # Updated URL
       packages=['surfpy'],
       install_requires=['requests', 'pytz'],
       extras_require={'pygrib': ['pygrib']},
