@@ -112,11 +112,15 @@ class NOAAModel(object):
 
     def parse_grib_data(self, location, raw_data, data={}):
         if not pygrib:
+            print('Not pygrib !')
             return None
         if not raw_data:
+            print('empty!')
             return None
         elif not len(raw_data):
+            print('literally wat?')
             return None
+        #print('Made it pass the first checks !')
 
         # From https://github.com/jswhit/pygrib/issues/42#issuecomment-243643075
         f = BytesIO(raw_data)
