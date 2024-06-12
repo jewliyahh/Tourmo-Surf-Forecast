@@ -14,6 +14,7 @@ except:
     pass
 import math
 import pytz
+from datetime import datetime
 
 
 class BuoyStation(BaseStation):
@@ -62,7 +63,14 @@ class BuoyStation(BaseStation):
     def wave_forecast_bulletin_url(self, model: NOAAModel):
         model_run_time = model.latest_model_time()
         model_run_str = str(model_run_time.hour).rjust(2, '0')
-        date_str = model_run_time.strftime('%Y%m%d')
+        # date_str = model_run_time.strftime('%Y%m%d')
+
+        # Convert to Pacific Time
+        utc_time = model_run_time.replace(tzinfo=pytz.utc)
+        pacific_time = utc_time.astimezone(pytz.timezone('US/Pacific'))
+
+        # model_run_str = str(pacific_time.hour).rjust(2, '0')
+        date_str = pacific_time.strftime('%Y%m%d')
         return f'https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.{date_str}/{model_run_str}/wave/station/bulls.t{model_run_str}z/gfswave.{self.station_id}.bull'
 
     @staticmethod

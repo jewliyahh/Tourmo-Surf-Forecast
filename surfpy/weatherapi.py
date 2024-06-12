@@ -43,6 +43,7 @@ class WeatherApi():
         url = f'{WeatherApi._API_ROOT_URL}gridpoints/{office}/{grid_x},{grid_y}/forecast/hourly'
         resp = requests.get(url)
         resp_json = resp.json()
+        # print(resp_json)
         return resp_json['properties']
     
     @staticmethod
