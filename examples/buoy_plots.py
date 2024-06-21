@@ -66,6 +66,6 @@ class BuoyPlots(object):
 
 if __name__ == '__main__':
     plots = BuoyPlots()
-    plots.fetch_buoy_data('44097', 1)
-    plots.plot_directional_spectra('44097')
-    plots.plot_wave_energy('44097')
+    plots.fetch_buoy_data('46258', 1)
+    plots.plot_directional_spectra('46258')
+    plots.plot_wave_energy('46258')
